@@ -1,9 +1,8 @@
 package net.java.fif.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-
-import jakarta.persistence.Entity;
 
 @Getter
 @Setter
@@ -25,4 +24,9 @@ public class Book {
 
     @Column(name= "price", nullable = false)
     private int price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="author_id")
+    @JsonBackReference // ( child ) ignored when serialization
+    private Author author;
 }
