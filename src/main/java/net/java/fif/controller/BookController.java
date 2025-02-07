@@ -1,11 +1,13 @@
 package net.java.fif.controller;
 
+import net.java.fif.exception.ResourceNotFoundException;
 import net.java.fif.model.Book;
 import net.java.fif.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.apache.logging.log4j.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +16,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/books")
 public class BookController {
+    private static final Logger logger = LogManager.getLogger(BookController.class);
     @Autowired
     private BookService bookService;
 
     @GetMapping
     public List<Book> getAllBooks() {
+        logger.debug("Showing All Books");
+        logger.info("Showing All Books");
         return bookService.getAllBooks();
     }
 
-//    @PostMapping
-//    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-//        Book savedBook = bookService.createBook(book);
-//        return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
-//    }
 
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
@@ -57,13 +57,5 @@ public class BookController {
         bookService.deleteBook(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
-
-
-
-//input array - done
-
-//ada log buat delete
-//hnadling error
-//error message
-//unit test

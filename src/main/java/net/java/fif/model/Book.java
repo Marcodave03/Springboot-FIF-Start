@@ -1,9 +1,11 @@
 package net.java.fif.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.Entity;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,4 +27,13 @@ public class Book {
 
     @Column(name= "price", nullable = false)
     private int price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="author_id")
+    @JsonBackReference // ( child ) ignored when serialization
+    private Author author;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @JsonManagedReference
+    private Set<File> files;
 }

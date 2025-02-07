@@ -15,8 +15,6 @@ public class FifApplication implements CommandLineRunner {
 		SpringApplication.run(FifApplication.class, args);
 	}
 
-	@Autowired
-	private BookRepository bookRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
