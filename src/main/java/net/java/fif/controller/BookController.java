@@ -27,11 +27,6 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-//    @PostMapping
-//    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-//        Book savedBook = bookService.createBook(book);
-//        return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
-//    }
 
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
@@ -63,25 +58,4 @@ public class BookController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//        @DeleteMapping("/{id}")
-//        public ResponseEntity<String> deleteBook(@PathVariable long id) {
-//            try {
-//                bookService.deleteBook(id);
-//                logger.info("Book with ID {} deleted successfully", id);
-//                return ResponseEntity.ok("Book deleted successfully");
-//            } catch (ResourceNotFoundException e) {
-//                logger.error("Failed to delete book with ID {}: {}", id, e.getMessage());
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found with ID " + id);
-//            } catch (Exception e) {
-//                logger.error("Unexpected error while deleting book with ID {}: {}", id, e.getMessage());
-//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Could not delete book");
-//            }
-//        }
 }
-
-//array post
-//ada log buat delete
-//hnadling error
-//error message
-//unit test
-//nvm spring-boot:run

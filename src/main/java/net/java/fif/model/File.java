@@ -32,5 +32,4 @@ public class File {
     @JsonBackReference
     private Book book;
 
-
 }

@@ -18,7 +18,8 @@ import java.util.Optional;
 @Service
 public class FileService {
 
-    private static final String UPLOAD_DIR = "uploads/";
+    private static final String UPLOAD_DIR = "C:/2. Code Repository/100. Repository/FIF/fif/files/";
+
 
     @Autowired
     private FileRepository fileRepository;
