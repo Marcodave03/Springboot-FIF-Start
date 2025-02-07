@@ -17,12 +17,13 @@ import java.util.List;
 @RequestMapping("/api/v1/books")
 public class BookController {
     private static final Logger logger = LogManager.getLogger(BookController.class);
-
     @Autowired
     private BookService bookService;
 
     @GetMapping
     public List<Book> getAllBooks() {
+        logger.debug("Showing All Books");
+        logger.info("Showing All Books");
         return bookService.getAllBooks();
     }
 
@@ -56,27 +57,26 @@ public class BookController {
         return ResponseEntity.ok(updatedBook);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<HttpStatus> deleteBook(@PathVariable long id) {
-//        bookService.deleteBook(id);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteBook(@PathVariable long id) {
+        bookService.deleteBook(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
-        @DeleteMapping("/{id}")
-        public ResponseEntity<String> deleteBook(@PathVariable long id) {
-            try {
-                logger.info("Attempting to delete book with ID: {}", id);
-                bookService.deleteBook(id);
-                logger.info("Book with ID {} deleted successfully", id);
-                return ResponseEntity.ok("Book deleted successfully");
-            } catch (ResourceNotFoundException e) {
-                logger.error("Failed to delete book with ID {}: {}", id, e.getMessage());
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found with ID " + id);
-            } catch (Exception e) {
-                logger.error("Unexpected error while deleting book with ID {}: {}", id, e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Could not delete book");
-            }
-        }
+//        @DeleteMapping("/{id}")
+//        public ResponseEntity<String> deleteBook(@PathVariable long id) {
+//            try {
+//                bookService.deleteBook(id);
+//                logger.info("Book with ID {} deleted successfully", id);
+//                return ResponseEntity.ok("Book deleted successfully");
+//            } catch (ResourceNotFoundException e) {
+//                logger.error("Failed to delete book with ID {}: {}", id, e.getMessage());
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Book not found with ID " + id);
+//            } catch (Exception e) {
+//                logger.error("Unexpected error while deleting book with ID {}: {}", id, e.getMessage());
+//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Could not delete book");
+//            }
+//        }
 }
 
 //array post

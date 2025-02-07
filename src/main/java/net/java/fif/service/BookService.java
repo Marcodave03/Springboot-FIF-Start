@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.*;
 
+
 import java.util.List;
 
 @Service
 public class BookService {
-    private static final Logger logger = LogManager.getLogger(BookController.class);
+    private static final Logger logger = LogManager.getLogger(BookService.class);
 
     @Autowired
     private BookRepository bookRepository;
@@ -21,6 +22,7 @@ public class BookService {
     private AuthorService authorService;
 
     public List<Book> getAllBooks() {
+        logger.debug("Showing All Books");
         return bookRepository.findAll();
     }
 
@@ -31,6 +33,7 @@ public class BookService {
     }
 
     public List<Book> createBooks(List<Book> books) {
+        logger.info("Books Created");
         return bookRepository.saveAll(books);
     }
 
