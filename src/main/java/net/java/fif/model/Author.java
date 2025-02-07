@@ -26,4 +26,6 @@ public class Author {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     @JsonManagedReference // ( parent ) -> will be serialized
     private Set<Book> books; //Set -> no duplicate allowed
+
+
 }
